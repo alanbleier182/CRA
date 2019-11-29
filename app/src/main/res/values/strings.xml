@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CRA</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="portfolio">Hello portfolio fragment</string>
+    <string name="risk_manager">Hello risk manager fragment</string>
+    <string name="notifications">Hello notifications fragment</string>
+    <string name="settings">Hello settings fragment</string>
+    <string name="message1">primer mensaje</string>
+    <string name="message2">segundo mensaje</string>
+    <string name="message3">tercer mensaje</string>
+    <string name="message4">cuarto mensaje</string>
+</resources>
+
