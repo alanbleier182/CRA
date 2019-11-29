@@ -8,9 +8,9 @@
     <string name="risk_manager">Hello risk manager fragment</string>
     <string name="notifications">Hello notifications fragment</string>
     <string name="settings">Hello settings fragment</string>
-    <string name="message1">primer mensaje</string>
-    <string name="message2">segundo mensaje</string>
-    <string name="message3">tercer mensaje</string>
-    <string name="message4">cuarto mensaje</string>
+    <string name="message1">First messasge</string>
+    <string name="message2">Second message</string>
+    <string name="message3">Third message</string>
+    <string name="message4">Fourth message</string>
 </resources>
 
