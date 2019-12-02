@@ -29,5 +29,12 @@
     <string name="risk_notifications">Risk Notifications</string>
     <string name="news_updates_notifications">News and Updates</string>
 
+    <!-- Settings -->
+    <string name="change_name">Change Name</string>
+    <string name="retake_questionnaire">Retake Questionnaire</string>
+    <string name="advanced_options">Advanced Options</string>
+    <string name="change_password">Change Password</string>
+    <string name="night_mode">Night Mode</string>
+
 </resources>
 
