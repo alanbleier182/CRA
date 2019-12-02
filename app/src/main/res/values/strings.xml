@@ -24,5 +24,10 @@
     <string name="btc_weight">BTC: 40%</string>
     <string name="rpx_weight">RPX: 10%</string>
 
+    <!-- Notification Options -->
+    <string name="earnings_notifications">Earnings Notifications</string>
+    <string name="risk_notifications">Risk Notifications</string>
+    <string name="news_updates_notifications">News and Updates</string>
+
 </resources>
 
