@@ -12,5 +12,8 @@
     <string name="message2">Second message</string>
     <string name="message3">Third message</string>
     <string name="message4">Fourth message</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 

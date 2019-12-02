@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Fragment myFragment = null;
         Class fragmentClass;
         switch (menuItem.getItemId()) {
+            case R.id.home:
+                fragmentClass = Home.class;
+                break;
             case R.id.portfolio:
                 fragmentClass = Portfolio.class;
                 break;
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = Settings.class;
                 break;
             default:
-                fragmentClass = Portfolio.class;
+                fragmentClass = Home.class;
         }
         try {
             myFragment = (Fragment) fragmentClass.newInstance();
