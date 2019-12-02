@@ -6,9 +6,50 @@
     tools:context=".Portfolio">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/portfolio" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:src="@drawable/portfolio_graph"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/eth_weight"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bat_weight"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btc_weight"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rpx_weight"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

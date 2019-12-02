@@ -1,19 +1,28 @@
 <resources>
-    <string name="app_name">CRA</string>
+    <!-- The name of our app -->
+    <string name="app_name">Crypto Robo Advisor</string>
+
+    <!-- Open/Close drawer -->
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="portfolio">Hello portfolio fragment</string>
-    <string name="risk_manager">Hello risk manager fragment</string>
-    <string name="notifications">Hello notifications fragment</string>
-    <string name="settings">Hello settings fragment</string>
+    <!-- Fragment headers -->
+    <string name="portfolio">Portfolio</string>
+    <string name="risk_manager">Risk Management</string>
+    <string name="notifications">Notifications</string>
+    <string name="settings">Settings</string>
+
+    <!-- Sample messages -->
     <string name="message1">First messasge</string>
     <string name="message2">Second message</string>
     <string name="message3">Third message</string>
     <string name="message4">Fourth message</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Sample weighted crypto -->
+    <string name="eth_weight">ETH: 30%</string>
+    <string name="bat_weight">BAT: 20%</string>
+    <string name="btc_weight">BTC: 40%</string>
+    <string name="rpx_weight">RPX: 10%</string>
+
 </resources>
 
