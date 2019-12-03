@@ -36,5 +36,12 @@
     <string name="change_password">Change Password</string>
     <string name="night_mode">Night Mode</string>
 
+    <!-- Risk Levels -->
+    <string name="current">Your current Risk Level is: </string>
+    <string name="low_risk">Low</string>
+    <string name="medium_risk">Medium</string>
+    <string name="high_risk">High</string>
+    <string name="mock_description">Blah blah blah blah blah blah blah...</string>
+
 </resources>
 
