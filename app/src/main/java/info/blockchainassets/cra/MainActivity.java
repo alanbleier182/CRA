@@ -14,10 +14,18 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
 import org.web3j.protocol.http.HttpService;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.security.Provider;
+import java.security.Security;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
 
     private Web3j web3;
+    private String password:
+    private String walletPath;
+    private File walletDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +49,31 @@ public class MainActivity extends AppCompatActivity {
         mToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(nvDrawer);
+
+        setupBouncyCastle();
+
+        //Get password from file
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open("password.txt")));
+
+            // do reading, usually loop until end of file reading
+            password = reader.readLine();
+        } catch (IOException e) {
+            toastAsync(e.getMessage());
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    toastAsync(e.getMessage());
+                }
+            }
+        }
+
+        walletPath = getFilesDir().getAbsolutePath();
+        walletDir = new File(walletPath);
     }
 
     public void connectToEthNetwork(View v) {
@@ -52,6 +88,16 @@ public class MainActivity extends AppCompatActivity {
                 toastAsync(clientVersion.getError().getMessage());
             }
         } catch (Exception e) {
+            toastAsync(e.getMessage());
+        }
+    }
+
+    public void createWallet(View v){
+        try{
+            WalletUtils.generateNewWalletFile(password, walletDir);
+            toastAsync("Wallet generated");
+        }
+        catch (Exception e){
             toastAsync(e.getMessage());
         }
     }
@@ -114,5 +160,25 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    // Fixes the "No such algorithm: ECDSA for provider BC" error,
+    // see https://github.com/web3j/web3j/issues/915
+    private void setupBouncyCastle() {
+        final Provider provider = Security.getProvider(BouncyCastleProvider.PROVIDER_NAME);
+        if (provider == null) {
+            // Web3j will set up the provider lazily when it's first used.
+            return;
+        }
+        if (provider.getClass().equals(BouncyCastleProvider.class)) {
+            // BC with same package name, shouldn't happen in real life.
+            return;
+        }
+        // Android registers its own BC provider. As it might be outdated and might not include
+        // all needed ciphers, we substitute it with a known BC bundled in the app.
+        // Android's BC has its package rewritten to "com.android.org.bouncycastle" and because
+        // of that it's possible to have another BC implementation loaded in VM.
+        Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME);
+        Security.insertProviderAt(new BouncyCastleProvider(), 1);
     }
 }
