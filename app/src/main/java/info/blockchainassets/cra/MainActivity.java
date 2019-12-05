@@ -2,6 +2,8 @@ package info.blockchainassets.cra;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,12 +14,18 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.protocol.http.HttpService;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+
+    private Web3j web3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,28 @@ public class MainActivity extends AppCompatActivity {
         mToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(nvDrawer);
+    }
+
+    public void connectToEthNetwork(View v) {
+        toastAsync("Connecting to Ethereum network...");
+        web3 = Web3j.build(new HttpService("https://rinkeby.infura.io/v3/9e4fadd65d4e4bbab2032b259b0979c3"));
+        try {
+            Web3ClientVersion clientVersion = web3.web3ClientVersion().sendAsync().get();
+            if(!clientVersion.hasError()){
+                toastAsync("Connected!");
+            }
+            else {
+                toastAsync(clientVersion.getError().getMessage());
+            }
+        } catch (Exception e) {
+            toastAsync(e.getMessage());
+        }
+    }
+
+    public void toastAsync(String message) {
+        runOnUiThread(() -> {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        });
     }
 
     @Override
