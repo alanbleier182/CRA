@@ -12,4 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
-password.txt
+/app/src/main/assets/password.txt
