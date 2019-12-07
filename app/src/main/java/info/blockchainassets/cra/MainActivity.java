@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Set up UI
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -96,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
         try{
             WalletUtils.generateNewWalletFile(password, walletDir);
             toastAsync("Wallet generated");
+        }
+        catch (Exception e){
+            toastAsync(e.getMessage());
+        }
+    }
+
+    public void getAddress(View v){
+        try {
+            Credentials credentials = WalletUtils.loadCredentials(password, walletDir);
+            toastAsync("Your address is " + credentials.getAddress());
         }
         catch (Exception e){
             toastAsync(e.getMessage());

@@ -36,6 +36,14 @@
             android:onClick="createWallet"
             android:text="Create Wallet" />
 
+        <Button
+            android:id="@+id/getAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:onClick="getAddress"
+            android:text="Get Address" />
+
         </LinearLayout>
 
     </FrameLayout>
