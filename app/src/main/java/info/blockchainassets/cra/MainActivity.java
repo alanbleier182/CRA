@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
 
     private Web3j web3;
-    private String password:
+    private String password;
     private String walletPath;
     private File walletDir;
 
