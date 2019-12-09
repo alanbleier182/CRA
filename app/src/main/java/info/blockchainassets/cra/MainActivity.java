@@ -37,13 +37,14 @@ public class MainActivity extends AppCompatActivity {
     private Web3j web3;
     private String password;
     private String walletPath;
+    private String walletName;
     private File walletDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Set up UI
+        //Set up main activity UI
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -53,9 +54,10 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(nvDrawer);
 
+        // Auxiliary method to fix EC-related problems specific to Android
         setupBouncyCastle();
 
-        //Get password from file
+        //Get password from file (test-only)
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // The wallet path is the default 'files' location, where the wallet will be created
         walletPath = getFilesDir().getAbsolutePath();
         walletDir = new File(walletPath);
     }
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void createWallet(View v){
         try{
-            WalletUtils.generateNewWalletFile(password, walletDir);
+            walletName = WalletUtils.generateNewWalletFile(password, walletDir);
             toastAsync("Wallet generated");
         }
         catch (Exception e){
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getAddress(View v){
         try {
-            Credentials credentials = WalletUtils.loadCredentials(password, walletDir);
+            Credentials credentials = WalletUtils.loadCredentials(password, walletDir + "/" + walletName);
             toastAsync("Your address is " + credentials.getAddress());
         }
         catch (Exception e){
